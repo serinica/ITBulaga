@@ -29,24 +29,25 @@ def getResult():
 
         json_data = requests.get(url).json()
 
-        print("URL: " + (url))
-
+        print("\033[0;34;47m==================================================================================\033[0m")
+        print("\033[1;31;40mURL: " + (url) + "\033[0m")
         json_data = requests.get(url).json()
 
         json_status = json_data["info"]["statuscode"]
 
         if json_status == 0:
 
-            print("API Status: " + str(json_status) + " = A successful route call.\n")
+            print("\033[1;31;40mAPI Status: " + str(json_status) + " = A successful route call \033[0m.\n")
 
-            print("=============================================")
-            print("Directions from " + (orig) + " to " + (dest))
+            print("\033[0;34;47m==================================================================================\033[0m")
+            print("\033[2;36;40mDirections from " + (orig) + " to " + (dest))
 
             print("Trip Duration:   " + (json_data["route"]["formattedTime"]))
 
             if metric == "Kilometer":
 
                 print("Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
+                
 
             elif metric == "Meter":
 
@@ -73,58 +74,65 @@ def getResult():
                 print("Millimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000000.61)))
 
 
-            print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
+            print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78))+ "\033[0m")
 
-            print("=============================================")
+            print("\033[0;34;47m==================================================================================\033[0m")
 
             for each in json_data["route"]["legs"][0]["maneuvers"]:
 
                 if metric == "Kilometer":
 
-                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+                    print((each["narrative"]) + "\n \033[2;36;40mComputed Distance: (" + str("{:.2f}".format((each["distance"])*1.61) + " km)\033[0m"))
+                   
 
                 elif metric == "Meter":
 
-                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1000.61) + " m)"))
+                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000.61) + " m)"))
+                    
 
                 elif metric == "Hectometer":
 
-                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*10.61) + " hm)"))
+                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10.61) + " hm)"))
+                    
 
                 elif metric == "Decameter":
 
-                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*100.61) + " dam)"))
+                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100.61) + " dam)"))
+                    
                 
                 elif metric == "Decimeter":
 
-                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*10000.61) + " dm)"))
+                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10000.61) + " dm)"))
+                    
 
                 elif metric == "Centimeter":
 
-                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*100000.61) + " cm)"))
+                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100000.61) + " cm)"))
+                    
 
                 elif metric == "Millimeter":
 
-                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)"))
-            print("=============================================\n")
+                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)"))
+                    
+            print("\033[0;34;47m==================================================================================\033[0m")
 
         elif json_status == 402:
 
-            print("**********************************************")
+            print("\033[0;31;47m**********************************************\033[0m")
 
             print("Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.")
 
-            print("**********************************************\n")
+            print("\033[0;31;47m**********************************************\033[0m")
 
         elif json_status == 611:
 
-            print("**********************************************")
+            print("\033[0;31;47m**********************************************\033[0m")
 
             print("Status Code: " + str(json_status) + "; Missing an entry for one or both locations.")
         break
 
 def Close():
-    print("**********************Thank You for Using MapQuest************************\n")
+    print("\033[1;31;40m**********************Thank You for Using MapQuest************************\033[0m\n")
     app.destroy()
 
 s = ttk.Style()
