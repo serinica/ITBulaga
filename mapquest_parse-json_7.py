@@ -1,12 +1,20 @@
+import tkinter.ttk as ttk
+import tkinter
+import tkinter.messagebox
 from tkinter import *
 import urllib.parse
 import requests
-
-root = Tk()
+app = tkinter.Tk()
+app.geometry("450x400")
+app.title("MapQuest API")
 
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 
 key = "sBTGRt94bHSZB37vjW7bKvZFLSGaVHSd"
+
+
+def button_function():
+    print("button pressed")
 
 def getResult():
     while True:
@@ -44,9 +52,9 @@ def getResult():
 
                 print("Meters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10.61)))
 
-            elif metric == "MIllimeter":
+            elif metric == "Millimeter":
 
-                print("MIllimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10000.61)))
+                print("Millimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10000.61)))
 
             print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
 
@@ -62,7 +70,7 @@ def getResult():
 
                     print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " m)"))
 
-                elif metric == "MIllimeter":
+                elif metric == "Millimeter":
 
                     print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " mm)"))
             print("=============================================\n")
@@ -83,40 +91,66 @@ def getResult():
         break
 
 def Close():
-    root.destroy()
+    print("**********************Thank You for Using MapQuest************************\n")
+    app.destroy()
 
+s = ttk.Style()
+s.configure("TRadiobutton", fg="red")
 
-root.geometry("644x344")
-#Heading
-Label(root, text="MAPQUEST API", font="comicsansms 13 bold", pady=15).grid(row=0, column=3)
+app.configure(bg='Navy')
 
-#Text for our form
-loc = Label(root, text="Starting Location")
-dest = Label(root, text="Destination")
-met = Label(root, text="Metric")
+y_padding = 6
 
-#Pack text for our form
-loc.grid(row=1, column=2)
-dest.grid(row=2, column=2)
-met.grid(row=3, column=2)
+frame = tkinter.Frame(master=app, width=300, height=290, bg="Teal")
+frame.pack(padx=60, pady=20, fill="both", expand=True)
+
+label_map = tkinter.Label(frame, text="MapQuest API", bg="Teal", font=("Roboto Medium", -30), fg= "white")
+label_map.pack(pady=y_padding, padx=10)
+
+loc = Label(frame, text="Starting Location")
+dest = Label(frame, text="Destination")
+met = Label(frame, text="Metric")
+
+locvalue = StringVar()
+destvalue = StringVar()
+metvalue = StringVar()
+
+#Entries for our form
+locentry = Entry(frame, textvariable=locvalue)
+destentry = Entry(frame, textvariable=destvalue)
+metentry = Entry(frame, textvariable=metvalue)
 
 # Tkinter variable for storing entries
 locvalue = StringVar()
 destvalue = StringVar()
 metvalue = StringVar()
 
-#Entries for our form
-locentry = Entry(root, textvariable=locvalue)
-destentry = Entry(root, textvariable=destvalue)
-metentry = Entry(root, textvariable=metvalue)
-# Packing the Entries
-locentry.grid(row=1, column=3)
-destentry.grid(row=2, column=3)
-metentry.grid(row=3, column=3)
+#Label & Entries for our form
+label_loc = tkinter.Label(frame, text="Starting Location:", bg="Teal", font="comicsansms 9 bold")
+label_loc.pack(pady=y_padding, padx=10)
 
-#Button & packing it and assigning it a command
-Button(text="Submit", command=getResult).grid(row=7, column=3)
+entry_loc = tkinter.Entry(frame, textvariable=locvalue, highlightbackground="lightgray", width=25)
+entry_loc.pack(pady=y_padding, padx=10)
 
-Button(root, text="Exit", command=Close).grid(row=8, column=3)
+label_dest = tkinter.Label(frame, text="Destination:", bg="Teal", font="comicsansms 9 bold")
+label_dest.pack(pady=y_padding, padx=10)
 
-root.mainloop()
+entry_dest = tkinter.Entry(frame, textvariable=destvalue, highlightbackground="lightgray", width=25)
+entry_dest.pack(pady=y_padding, padx=10)
+
+label_met = tkinter.Label(frame, text="Metric: (Kilometer/Meter/Millimeter)", bg="Teal", font="comicsansms 9 bold")
+label_met.pack(pady=y_padding, padx=10)
+
+entry_met = tkinter.Entry(frame, textvariable=metvalue, highlightbackground="lightgray", width=25)
+entry_met.pack(pady=y_padding, padx=10)
+
+button_res = tkinter.Button(frame, command=getResult, text="Result", highlightbackground="lightgray", width=8, bg= "Grey", fg= "White")
+button_res.pack(pady=y_padding, padx=15)
+
+button_ex = tkinter.Button(frame, command=Close, text="Exit", highlightbackground="red", width=8, bg= "Black", fg= "White")
+button_ex.pack(pady=y_padding, padx=15)
+
+label_out = tkinter.Label(frame, text="+Check result in terminal after clicking result button+", bg="Teal", font="comicsansms 8 italic")
+label_out.pack(pady=y_padding, padx=10)
+
+app.mainloop()
