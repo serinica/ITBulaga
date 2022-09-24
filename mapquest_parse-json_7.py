@@ -50,11 +50,28 @@ def getResult():
 
             elif metric == "Meter":
 
-                print("Meters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10.61)))
+                print("Meters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000.61)))
+
+            elif metric == "Hectometer":
+
+                print("Hectometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*10.61)))
+
+            elif metric == "Decameter":
+
+                print("Decameters:      " + str("{:.2f}".format((json_data["route"]["distance"])*100.61)))
+
+            elif metric == "Decimeter":
+
+                print("Decimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10000.61)))
+
+            elif metric == "Centimeter":
+
+                print("Centimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*100000.61)))
 
             elif metric == "Millimeter":
 
-                print("Millimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10000.61)))
+                print("Millimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000000.61)))
+
 
             print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
 
@@ -68,11 +85,27 @@ def getResult():
 
                 elif metric == "Meter":
 
-                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " m)"))
+                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1000.61) + " m)"))
+
+                elif metric == "Hectometer":
+
+                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*10.61) + " hm)"))
+
+                elif metric == "Decameter":
+
+                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*100.61) + " dam)"))
+                
+                elif metric == "Decimeter":
+
+                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*10000.61) + " dm)"))
+
+                elif metric == "Centimeter":
+
+                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*100000.61) + " cm)"))
 
                 elif metric == "Millimeter":
 
-                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " mm)"))
+                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)"))
             print("=============================================\n")
 
         elif json_status == 402:
@@ -138,7 +171,7 @@ label_dest.pack(pady=y_padding, padx=10)
 entry_dest = tkinter.Entry(frame, textvariable=destvalue, highlightbackground="lightgray", width=25)
 entry_dest.pack(pady=y_padding, padx=10)
 
-label_met = tkinter.Label(frame, text="Metric: (Kilometer/Meter/Millimeter)", bg="Teal", font="comicsansms 9 bold")
+label_met = tkinter.Label(frame, text="Metric: \n(Kilometer/Meter/Hectometer/Decameter/Decimeter/Centimeter/Millimeter)", bg="Teal", font="comicsansms 9 bold")
 label_met.pack(pady=y_padding, padx=10)
 
 entry_met = tkinter.Entry(frame, textvariable=metvalue, highlightbackground="lightgray", width=25)
