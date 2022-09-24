@@ -15,6 +15,7 @@ def getResult():
 
         dest = destvalue.get()
 
+        metric = metvalue.get()
 
         url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
 
@@ -35,7 +36,17 @@ def getResult():
 
             print("Trip Duration:   " + (json_data["route"]["formattedTime"]))
 
-            print("Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
+            if metric == "Kilometer":
+
+                print("Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
+
+            elif metric == "Meter":
+
+                print("Meters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10.61)))
+
+            elif metric == "MIllimeter":
+
+                print("MIllimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10000.61)))
 
             print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
 
@@ -43,7 +54,17 @@ def getResult():
 
             for each in json_data["route"]["legs"][0]["maneuvers"]:
 
-                print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+                if metric == "Kilometer":
+
+                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+
+                elif metric == "Meter":
+
+                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " m)"))
+
+                elif metric == "MIllimeter":
+
+                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " mm)"))
             print("=============================================\n")
 
         elif json_status == 402:
@@ -72,24 +93,26 @@ Label(root, text="MAPQUEST API", font="comicsansms 13 bold", pady=15).grid(row=0
 #Text for our form
 loc = Label(root, text="Starting Location")
 dest = Label(root, text="Destination")
+met = Label(root, text="Metric")
 
 #Pack text for our form
 loc.grid(row=1, column=2)
 dest.grid(row=2, column=2)
+met.grid(row=3, column=2)
 
 # Tkinter variable for storing entries
 locvalue = StringVar()
 destvalue = StringVar()
-
+metvalue = StringVar()
 
 #Entries for our form
 locentry = Entry(root, textvariable=locvalue)
 destentry = Entry(root, textvariable=destvalue)
-
+metentry = Entry(root, textvariable=metvalue)
 # Packing the Entries
 locentry.grid(row=1, column=3)
 destentry.grid(row=2, column=3)
-
+metentry.grid(row=3, column=3)
 
 #Button & packing it and assigning it a command
 Button(text="Submit", command=getResult).grid(row=7, column=3)
