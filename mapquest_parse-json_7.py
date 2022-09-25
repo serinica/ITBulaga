@@ -9,13 +9,14 @@ app.geometry("450x400")
 app.title("MapQuest API")
 
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
-
+#MY API KEY
 key = "sBTGRt94bHSZB37vjW7bKvZFLSGaVHSd"
 
 
 def button_function():
     print("button pressed")
 
+#function to compute & display the result
 def getResult():
     while True:
 
@@ -44,6 +45,7 @@ def getResult():
 
             print("Trip Duration:   " + (json_data["route"]["formattedTime"]))
 
+            #condition for the metric system
             if metric == "Kilometer":
 
                 print("Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
