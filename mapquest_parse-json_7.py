@@ -5,7 +5,7 @@ from tkinter import *
 import urllib.parse
 import requests
 app = tkinter.Tk()
-app.geometry("450x400")
+app.geometry("600x400")
 app.title("MapQuest API")
 
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
@@ -136,9 +136,6 @@ def getResult():
 def Close():
     print("\033[1;31;40m**********************Thank You for Using MapQuest************************\033[0m\n")
     app.destroy()
-
-s = ttk.Style()
-s.configure("TRadiobutton", fg="red")
 
 app.configure(bg='Navy')
 
