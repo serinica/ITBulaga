@@ -1,4 +1,3 @@
-import tkinter.ttk as ttk
 import tkinter
 import tkinter.messagebox
 from tkinter import *
@@ -10,7 +9,7 @@ app.title("MapQuest API")
 
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 #MY API KEY
-key = "sBTGRt94bHSZB37vjW7bKvZFLSGaVHSd"
+key = "oASyGZH5MQmlsOhOhOwI2xo6yvP2wSq3"
 
 
 def button_function():
