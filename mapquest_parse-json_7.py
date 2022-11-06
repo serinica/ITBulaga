@@ -31,15 +31,15 @@ def getResult():
         
         #outputResult += "\033[0;34;47m==================================================================================\033[0m"
         
-        #outputResult += "URL: " + (url)
-        #json_data = requests.get(url).json()
+        print("\nURL: " + (url))
+        json_data = requests.get(url).json()
 
         json_status = json_data["info"]["statuscode"]
 
        
         if json_status == 0:
 
-            outputResult += "\nAPI Status: " + str(json_status) + " = A successful route call \n"
+            print("\nAPI Status: " + str(json_status) + " = A successful route call \n")
             
             #outputResult += "\033[0;34;47m==================================================================================\033[0m"
             
@@ -93,42 +93,42 @@ def getResult():
                 if metric == "Kilometer":
 
                     
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1.61) + " km)" + "\n")
+                    outputResult += (each["narrative"]) + "\n Distance: (" + str("{:.2f}".format((each["distance"])*1.61) + " km)" + "\n")
 
                 elif metric == "Meter":
 
                     
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000.61) + " m)" + "\n")
+                    outputResult += (each["narrative"]) + "\n Distance: (" + str("{:.2f}".format((each["distance"])*1000.61) + " m)" + "\n")
 
                 elif metric == "Hectometer":
 
                     
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10.61) + " hm)" + "\n")
+                    outputResult += (each["narrative"]) + "\n Distance: (" + str("{:.2f}".format((each["distance"])*10.61) + " hm)" + "\n")
 
                 elif metric == "Decameter":
 
                     
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100.61) + " dam)" + "\n")
+                    outputResult += (each["narrative"]) + "\n Distance: (" + str("{:.2f}".format((each["distance"])*100.61) + " dam)" + "\n")
 
                 
                 elif metric == "Decimeter":
 
                 
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10000.61) + " dm)" + "\n")
+                    outputResult += (each["narrative"]) + "\n Distance: (" + str("{:.2f}".format((each["distance"])*10000.61) + " dm)" + "\n")
 
                 elif metric == "Centimeter":
 
                     
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100000.61) + " cm)" + "\n")
+                    outputResult += (each["narrative"]) + "\n Distance: (" + str("{:.2f}".format((each["distance"])*100000.61) + " cm)" + "\n")
 
 
                 elif metric == "Millimeter":
 
                     
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)" + "\n")
+                    outputResult += (each["narrative"]) + "\n Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)" + "\n")
 
             
-            outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)" + "\n")
+            outputResult += (each["narrative"]) + "\n Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)" + "\n")
             return outputResult
         elif json_status == 402:
 
@@ -201,11 +201,22 @@ label_met.pack(pady=y_padding, padx=10)
 entry_met = tkinter.Entry(frame, textvariable=metvalue, highlightbackground="lightgray", width=25)
 entry_met.pack(pady=y_padding, padx=10)
 
-def onClick():
-    tkinter.messagebox.showinfo("RESULTS", getResult())
+#top = Tk()
 
+def onClick():
+    box = tkinter.messagebox.showinfo("RESULTS", getResult())
+    
 button_res = tkinter.Button(frame, command=onClick, text="Result", highlightbackground="lightgray", width=8, bg= "Grey", fg= "White")
 button_res.pack(pady=y_padding, padx=15)
+
+#try msg prompt#
+#top.geometry("1000x1000")
+#B1 = Button(top, text = "Button-1", command = onClick)  
+
+#B1.pack()
+#top.mainloop()
+
+
 
 
 
