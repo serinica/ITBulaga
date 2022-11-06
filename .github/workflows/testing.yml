@@ -45,13 +45,16 @@ jobs:
         echo "Changes has been committed"
         
     - name: Test Fail Step
-      id: demo
       run: |
-        exit 1
+        if: "test_lint.py" == "false"
+          echo "Your code will not be committed"
+          exit 1
+        fi
         
-    - name: Demo step failed
-      run: |
-        if: ${{ failure() && steps.demo.conclusion == 'failure' }}
+        
+   # - name: Demo step failed
+   #   run: |
+    #    if: ${{ failure() && steps.demo.conclusion == 'failure' }}
         
     - name: Test with pytest
       run: |
