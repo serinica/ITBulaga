@@ -6,16 +6,18 @@ from typing import TextIO
 
 from pylint.lint import Run
 
-THRESHOLD = 1 
+THRESHOLD = 1
 
-run = lint.Run(["mapquest_parse-json_7.py"], do_exit=False) 
+#run = lint.Run(["mapquest_parse-json_7.py"], do_exit=False) 
 
-score = run
+#score = run
 
 default_stdout = sys.stdout
 sys.stdout = type("Dummy", (TextIO,), {"write": lambda self, data: ()})()
 score1 = Run(["mapquest_parse-json_7.py"], exit=False).linter.stats.global_note
 sys.stdout = default_stdout
+
+print("Code Rating: ", score1, "/4")
 
 if score1 < THRESHOLD: 
 
