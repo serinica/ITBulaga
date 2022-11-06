@@ -40,13 +40,13 @@ def getResult():
         if json_status == 0:
 
             
-            outputResult += "\033[1;31;40mAPI Status: " + str(json_status) + " = A successful route call \033[0m.\n"
+            outputResult += "\033\nAPI Status: " + str(json_status) + " = A successful route call \033\n"
             
             #outputResult += "\033[0;34;47m==================================================================================\033[0m"
             
-            outputResult += "\033[2;36;40mDirections from " + (orig) + " to " + (dest)
+            outputResult += "\033\nDirections from " + (orig) + " to " + (dest)
             
-            outputResult += "Trip Duration:   " + (json_data["route"]["formattedTime"])
+            outputResult += "\nTrip Duration:   " + (json_data["route"]["formattedTime"] + "\n")
             #condition for the metric system
             if metric == "Kilometer":
 
