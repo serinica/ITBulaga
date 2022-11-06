@@ -55,6 +55,6 @@ jobs:
         #git push
         echo "Changes has been committed" 
         
-    - name: Test with pytest
-      run: |
-        pytest
+   # - name: Test with pytest
+    #  run: |
+    #    pytest
