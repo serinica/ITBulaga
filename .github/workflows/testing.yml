@@ -41,7 +41,7 @@ jobs:
         
     - name: Test Success
       run: |
-        if: "test_lint.py" == "true"
+        # if: "test_lint.py" == "true"
         github.event.push
         echo "Changes has been committed"
         
