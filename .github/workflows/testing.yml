@@ -42,7 +42,9 @@ jobs:
     - name: Test Success
       run: |
         # if: "test_lint.py" == "true"
-        github.event.push
+        #github.event.push
+        git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+        git push
         echo "Changes has been committed"
         
     - name: Test Fail Step
