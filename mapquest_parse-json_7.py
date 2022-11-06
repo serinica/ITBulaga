@@ -11,10 +11,6 @@ main_api = "https://www.mapquestapi.com/directions/v2/route?"
 #MY API KEY
 key = "oASyGZH5MQmlsOhOhOwI2xo6yvP2wSq3"
 
-
-def button_function():
-    print("button pressed")
-
 #function to compute & display the result
 def getResult():
     while True:
