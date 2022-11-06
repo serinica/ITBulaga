@@ -44,23 +44,19 @@ jobs:
         # if: "test_lint.py" == "true"
         #github.event.push
         #commit and push changed files to the repository.
-        git config --global user.name "palomamarie"
-        git config --global user.email "palomamarie.cipriano.cics@ust.edu.ph"
-        git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
-        git push
+        #git config --global user.name "palomamarie"
+        #git config --global user.email "palomamarie.cipriano.cics@ust.edu.ph"
+        #git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+        #git push
         echo "Changes has been committed"
         
     - name: Test Fail Step
       run: |
-        if: "test_lint.py" == "false"
-          echo "Your code will not be committed"
-          exit 1
+        #if: "test_lint.py" == "false"
+        echo "Your code will not be committed"
+        exit 1
         fi
         
-        
-   # - name: Demo step failed
-   #   run: |
-    #    if: ${{ failure() && steps.demo.conclusion == 'failure' }}
         
     - name: Test with pytest
       run: |
