@@ -18,5 +18,3 @@ if score < THRESHOLD:
     sys.exit(1) 
 else:
     print("Code Rating Based on Lint Testing:", score,"\n (((PASSED TEST)))")
-
-sys.exit(0) 
