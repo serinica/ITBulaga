@@ -1,7 +1,5 @@
 import sys 
 
-from pylint import lint  
-
 from typing import TextIO
 
 from pylint.lint import Run
