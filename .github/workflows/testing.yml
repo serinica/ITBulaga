@@ -45,7 +45,7 @@ jobs:
         #github.event.push
         #commit and push changed files to the repository.
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-        git config --global user.email "palomamarie@users.noreply.github.com"
+        git config --global user.email "serinica@users.noreply.github.com"
         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push
         echo "Changes has been committed"
