@@ -31,7 +31,7 @@ def getResult():
         
         #outputResult += "\033[0;34;47m==================================================================================\033[0m"
         
-        outputResult += "\033[1;31;40mURL: " + (url) + "\033[0m"
+        outputResult += "\033URL: " + (url) + "\033"
         json_data = requests.get(url).json()
 
         json_status = json_data["info"]["statuscode"]
