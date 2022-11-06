@@ -7,7 +7,6 @@ app = tkinter.Tk()
 app.geometry("600x400")
 app.title("MapQuest API")
 
-#api url
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 #MY API KEY
 key = "oASyGZH5MQmlsOhOhOwI2xo6yvP2wSq3"
@@ -188,7 +187,7 @@ button_res.pack(pady=y_padding, padx=15)
 #label_out = tkinter.Label(frame, text="+Check result in terminal after clicking result button+", bg="Teal", font="comicsansms 8 italic")
 #label_out.pack(pady=y_padding, padx=10)
 
-
+#try lang
 def myfunction():
     emptylabel.config(text="Result: " + getResult.get())
 
@@ -199,4 +198,3 @@ button_ex = tkinter.Button(frame, command=Close, text="Exit", highlightbackgroun
 button_ex.pack(pady=y_padding, padx=15)
 
 app.mainloop()
-
