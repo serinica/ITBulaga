@@ -71,7 +71,7 @@ def getResult():
                 print("Millimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000000.61)))
 
 
-            
+            #print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78))+ "\033[0m")
 
             print("\033[0;34;47m==================================================================================\033[0m")
 
