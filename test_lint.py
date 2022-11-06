@@ -6,7 +6,7 @@ from typing import TextIO
 
 from pylint.lint import Run
 
-THRESHOLD = 5
+THRESHOLD = 1
 
 default_stdout = sys.stdout
 sys.stdout = type("Dummy", (TextIO,), {"write": lambda self, data: ()})()
