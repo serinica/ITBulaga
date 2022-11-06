@@ -31,58 +31,57 @@ def getResult():
         
         #outputResult += "\033[0;34;47m==================================================================================\033[0m"
         
-        outputResult += "\033URL: " + (url) + "\033"
-        json_data = requests.get(url).json()
+        #outputResult += "URL: " + (url)
+        #json_data = requests.get(url).json()
 
         json_status = json_data["info"]["statuscode"]
 
        
         if json_status == 0:
 
-            
-            outputResult += "\033\nAPI Status: " + str(json_status) + " = A successful route call \033\n"
+            outputResult += "\nAPI Status: " + str(json_status) + " = A successful route call \n"
             
             #outputResult += "\033[0;34;47m==================================================================================\033[0m"
             
-            outputResult += "\033\nDirections from " + (orig) + " to " + (dest)
+            outputResult += "\nDirections from " + (orig) + " to " + (dest)
             
             outputResult += "\nTrip Duration:   " + (json_data["route"]["formattedTime"] + "\n")
             #condition for the metric system
             if metric == "Kilometer":
 
-                outputResult += "Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61))
+                outputResult += "\nKilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)) + "\n"
 
             elif metric == "Meter":
 
                 
-                outputResult += "Meters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000.61))
+                outputResult += "\nMeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000.61)) + "\n"
 
 
             elif metric == "Hectometer":
 
                 
-                outputResult += "Hectometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*10.61))
+                outputResult += "\nHectometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*10.61)) + "\n"
 
 
             elif metric == "Decameter":
 
                 
-                outputResult += "Decameters:      " + str("{:.2f}".format((json_data["route"]["distance"])*100.61))
+                outputResult += "\nDecameters:      " + str("{:.2f}".format((json_data["route"]["distance"])*100.61)) + "\n"
 
             elif metric == "Decimeter":
 
                 
-                outputResult += "Decimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10000.61))
+                outputResult += "\nDecimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10000.61)) + "\n"
 
             elif metric == "Centimeter":
 
                 
-                outputResult += "Centimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*100000.61))
+                outputResult += "\nCentimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*100000.61)) + "\n"
 
             elif metric == "Millimeter":
 
                 
-                outputResult += "Millimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000000.61))
+                outputResult += "\nMillimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000000.61))  + "\n"
 
             
 
@@ -94,42 +93,42 @@ def getResult():
                 if metric == "Kilometer":
 
                     
-                    outputResult += (each["narrative"]) + "\n \033[2;36;40mComputed Distance: (" + str("{:.2f}".format((each["distance"])*1.61) + " km)\033[0m")
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1.61) + " km)" + "\n")
 
                 elif metric == "Meter":
 
                     
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000.61) + " m)")
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000.61) + " m)" + "\n")
 
                 elif metric == "Hectometer":
 
                     
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10.61) + " hm)")
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10.61) + " hm)" + "\n")
 
                 elif metric == "Decameter":
 
                     
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100.61) + " dam)")
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100.61) + " dam)" + "\n")
 
                 
                 elif metric == "Decimeter":
 
                 
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10000.61) + " dm)")
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10000.61) + " dm)" + "\n")
 
                 elif metric == "Centimeter":
 
                     
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100000.61) + " cm)")
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100000.61) + " cm)" + "\n")
 
 
                 elif metric == "Millimeter":
 
                     
-                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)")
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)" + "\n")
 
             
-            outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)")
+            outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)" + "\n")
             return outputResult
         elif json_status == 402:
 
