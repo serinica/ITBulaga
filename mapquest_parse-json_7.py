@@ -7,7 +7,7 @@ app = tkinter.Tk()
 app.geometry("600x400")
 app.title("MapQuest API")
 
-#aaaa
+
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 #MY API KEY
 key = "oASyGZH5MQmlsOhOhOwI2xo6yvP2wSq3"
