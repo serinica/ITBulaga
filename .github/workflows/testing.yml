@@ -45,6 +45,7 @@ jobs:
         echo "Changes has been committed"
         
     - name: Test Fail Step
+      id: demo
       run: |
         exit 1
         
