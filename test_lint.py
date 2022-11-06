@@ -6,7 +6,7 @@ from typing import TextIO
 
 from pylint.lint import Run
 
-THRESHOLD = 9  
+THRESHOLD = 1 
 
 run = lint.Run(["mapquest_parse-json_7.py"], do_exit=False) 
 
