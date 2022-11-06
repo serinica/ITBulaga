@@ -7,13 +7,14 @@ app = tkinter.Tk()
 app.geometry("600x400")
 app.title("MapQuest API")
 
-#api url
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 #MY API KEY
 key = "oASyGZH5MQmlsOhOhOwI2xo6yvP2wSq3"
 
+
 #function to compute & display the result
 def getResult():
+    outputResult = ""
     while True:
 
         orig = locvalue.get()
@@ -26,108 +27,129 @@ def getResult():
 
         json_data = requests.get(url).json()
 
-        print("\033[0;34;47m==================================================================================\033[0m")
-        print("\033[1;31;40mURL: " + (url) + "\033[0m")
+
+        
+        #outputResult += "\033[0;34;47m==================================================================================\033[0m"
+        
+        outputResult += "\033[1;31;40mURL: " + (url) + "\033[0m"
         json_data = requests.get(url).json()
 
         json_status = json_data["info"]["statuscode"]
 
+       
         if json_status == 0:
 
-            print("\033[1;31;40mAPI Status: " + str(json_status) + " = A successful route call \033[0m.\n")
-
-            print("\033[0;34;47m==================================================================================\033[0m")
-            print("\033[2;36;40mDirections from " + (orig) + " to " + (dest))
-
-            print("Trip Duration:   " + (json_data["route"]["formattedTime"]))
-
+            
+            outputResult += "\033[1;31;40mAPI Status: " + str(json_status) + " = A successful route call \033[0m.\n"
+            
+            #outputResult += "\033[0;34;47m==================================================================================\033[0m"
+            
+            outputResult += "\033[2;36;40mDirections from " + (orig) + " to " + (dest)
+            
+            outputResult += "Trip Duration:   " + (json_data["route"]["formattedTime"])
             #condition for the metric system
             if metric == "Kilometer":
 
-                print("Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
-                
+                outputResult += "Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61))
 
             elif metric == "Meter":
 
-                print("Meters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000.61)))
+                
+                outputResult += "Meters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000.61))
+
 
             elif metric == "Hectometer":
 
-                print("Hectometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*10.61)))
+                
+                outputResult += "Hectometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*10.61))
+
 
             elif metric == "Decameter":
 
-                print("Decameters:      " + str("{:.2f}".format((json_data["route"]["distance"])*100.61)))
+                
+                outputResult += "Decameters:      " + str("{:.2f}".format((json_data["route"]["distance"])*100.61))
 
             elif metric == "Decimeter":
 
-                print("Decimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10000.61)))
+                
+                outputResult += "Decimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*10000.61))
 
             elif metric == "Centimeter":
 
-                print("Centimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*100000.61)))
+                
+                outputResult += "Centimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*100000.61))
 
             elif metric == "Millimeter":
 
-                print("Millimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000000.61)))
+                
+                outputResult += "Millimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000000.61))
 
+            
 
-            #print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78))+ "\033[0m")
-
-            print("\033[0;34;47m==================================================================================\033[0m")
+            
+            #outputResult += "\033[0;34;47m==================================================================================\033[0m"
 
             for each in json_data["route"]["legs"][0]["maneuvers"]:
 
                 if metric == "Kilometer":
 
-                    print((each["narrative"]) + "\n \033[2;36;40mComputed Distance: (" + str("{:.2f}".format((each["distance"])*1.61) + " km)\033[0m"))
-                   
+                    
+                    outputResult += (each["narrative"]) + "\n \033[2;36;40mComputed Distance: (" + str("{:.2f}".format((each["distance"])*1.61) + " km)\033[0m")
 
                 elif metric == "Meter":
 
-                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000.61) + " m)"))
                     
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000.61) + " m)")
 
                 elif metric == "Hectometer":
 
-                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10.61) + " hm)"))
                     
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10.61) + " hm)")
 
                 elif metric == "Decameter":
 
-                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100.61) + " dam)"))
                     
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100.61) + " dam)")
+
                 
                 elif metric == "Decimeter":
 
-                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10000.61) + " dm)"))
-                    
+                
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*10000.61) + " dm)")
 
                 elif metric == "Centimeter":
 
-                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100000.61) + " cm)"))
                     
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*100000.61) + " cm)")
+
 
                 elif metric == "Millimeter":
 
-                    print((each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)"))
                     
-            print("\033[0;34;47m==================================================================================\033[0m")
+                    outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)")
 
+            
+            outputResult += (each["narrative"]) + "\n Computed Distance: (" + str("{:.2f}".format((each["distance"])*1000000.61) + " mm)")
+            return outputResult
         elif json_status == 402:
 
-            print("\033[0;31;47m**********************************************\033[0m")
-
-            print("Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.")
-
-            print("\033[0;31;47m**********************************************\033[0m")
-
+            
+            #outputResult += "\033[0;31;47m**********************************************\033[0m"
+            
+            outputResult += "Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations."
+            
+            #outputResult += "\033[0;31;47m**********************************************\033[0m"
+            return outputResult
         elif json_status == 611:
 
-            print("\033[0;31;47m**********************************************\033[0m")
+            
+            #outputResult += "\033[0;31;47m**********************************************\033[0m"
 
-            print("Status Code: " + str(json_status) + "; Missing an entry for one or both locations.")
+            
+            outputResult += "Status Code: " + str(json_status) + "; Missing an entry for one or both locations."
+            return outputResult
         break
+    return outputResult
 
 def Close():
     print("\033[1;31;40m**********************Thank You for Using MapQuest************************\033[0m\n")
@@ -180,13 +202,18 @@ label_met.pack(pady=y_padding, padx=10)
 entry_met = tkinter.Entry(frame, textvariable=metvalue, highlightbackground="lightgray", width=25)
 entry_met.pack(pady=y_padding, padx=10)
 
-button_res = tkinter.Button(frame, command=getResult, text="Result", highlightbackground="lightgray", width=8, bg= "Grey", fg= "White")
+def onClick():
+    tkinter.messagebox.showinfo("RESULTS", getResult())
+
+button_res = tkinter.Button(frame, command=onClick, text="Result", highlightbackground="lightgray", width=8, bg= "Grey", fg= "White")
 button_res.pack(pady=y_padding, padx=15)
 
 
 
 #label_out = tkinter.Label(frame, text="+Check result in terminal after clicking result button+", bg="Teal", font="comicsansms 8 italic")
 #label_out.pack(pady=y_padding, padx=10)
+
+
 
 #try lang
 def myfunction():
