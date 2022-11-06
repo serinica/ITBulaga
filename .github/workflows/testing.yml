@@ -31,7 +31,7 @@ jobs:
     - name: Run unit tests
       run: |
         #code to run unit testing
-        python -m pytest --import-mode=append tests/
+        python -m pytest --import-mode=append mapquest_parse-json_7.py/
         
     - name: Test with Lint
       run: |
