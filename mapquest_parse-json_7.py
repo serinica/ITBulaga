@@ -1,6 +1,9 @@
+from logging import root
 import tkinter
 import tkinter.messagebox
 from tkinter import *
+from tkinter import messagebox
+from tkinter.tix import COLUMN, ButtonBox
 import urllib.parse
 import requests
 app = tkinter.Tk()
@@ -201,38 +204,22 @@ label_met.pack(pady=y_padding, padx=10)
 entry_met = tkinter.Entry(frame, textvariable=metvalue, highlightbackground="lightgray", width=25)
 entry_met.pack(pady=y_padding, padx=10)
 
-#top = Tk()
 
 def onClick():
-    box = tkinter.messagebox.showinfo("RESULTS", getResult())
-    
-button_res = tkinter.Button(frame, command=onClick, text="Result", highlightbackground="lightgray", width=8, bg= "Grey", fg= "White")
-button_res.pack(pady=y_padding, padx=15)
+    global box
+    box = Toplevel(app)
+    box.title("Result")
+    box.geometry("700x900")
+    box.config(bg="white")
 
-#try msg prompt#
-#top.geometry("1000x1000")
-#B1 = Button(top, text = "Button-1", command = onClick)  
+    boxes = Label(box, text=getResult(), bg="grey", font=("Roboto Medium", 12), fg= "black")
+    boxes.pack(padx=10)
+ 
 
-#B1.pack()
-#top.mainloop()
+    Button(box,command=Close, text="Ok", highlightbackground="red", width=8, bg= "Black", fg= "White").pack(pady=y_padding, padx=15)
 
+Button(app,command=onClick, text="Result", highlightbackground="lightgray", width=8, bg= "Grey", fg= "White").pack(pady=y_padding, padx=15)
 
-
-
-
-#label_out = tkinter.Label(frame, text="+Check result in terminal after clicking result button+", bg="Teal", font="comicsansms 8 italic")
-#label_out.pack(pady=y_padding, padx=10)
-
-
-
-#try lang
-def myfunction():
-    emptylabel.config(text="Result: " + getResult.get())
-
-emptylabel = Label(app,fg='green',font=('Arial',14))
-emptylabel.pack(pady=y_padding, padx=10)
-
-button_ex = tkinter.Button(frame, command=Close, text="Exit", highlightbackground="red", width=8, bg= "Black", fg= "White")
-button_ex.pack(pady=y_padding, padx=15)
+Button(app,command=Close, text="Exit", highlightbackground="red", width=8, bg= "Black", fg= "White").pack(pady=y_padding, padx=15)
 
 app.mainloop()
