@@ -75,7 +75,7 @@ def getResult():
                 print("Millimeters:      " + str("{:.2f}".format((json_data["route"]["distance"])*1000000.61)))
 
 
-            print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78))+ "\033[0m")
+            #print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78))+ "\033[0m")
 
             print("\033[0;34;47m==================================================================================\033[0m")
 
@@ -186,10 +186,18 @@ entry_met.pack(pady=y_padding, padx=10)
 button_res = tkinter.Button(frame, command=getResult, text="Result", highlightbackground="lightgray", width=8, bg= "Grey", fg= "White")
 button_res.pack(pady=y_padding, padx=15)
 
+
+
+#label_out = tkinter.Label(frame, text="+Check result in terminal after clicking result button+", bg="Teal", font="comicsansms 8 italic")
+#label_out.pack(pady=y_padding, padx=10)
+
+def myfunction():
+    emptylabel.config(text="Result: " + getResult.get())
+
+emptylabel = Label(app,fg='green',font=('Arial',14))
+emptylabel.pack(pady=y_padding, padx=10)
+
 button_ex = tkinter.Button(frame, command=Close, text="Exit", highlightbackground="red", width=8, bg= "Black", fg= "White")
 button_ex.pack(pady=y_padding, padx=15)
-
-label_out = tkinter.Label(frame, text="+Check result in terminal after clicking result button+", bg="Teal", font="comicsansms 8 italic")
-label_out.pack(pady=y_padding, padx=10)
 
 app.mainloop()
