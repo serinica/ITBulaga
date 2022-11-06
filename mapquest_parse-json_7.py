@@ -186,7 +186,7 @@ button_res.pack(pady=y_padding, padx=15)
 
 #label_out = tkinter.Label(frame, text="+Check result in terminal after clicking result button+", bg="Teal", font="comicsansms 8 italic")
 #label_out.pack(pady=y_padding, padx=10)
-#ewan 
+
 
 def myfunction():
     emptylabel.config(text="Result: " + getResult.get())
